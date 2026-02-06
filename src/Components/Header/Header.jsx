@@ -11,8 +11,8 @@ const Header = () => {
         <img src={Pokeball} alt="falling" className='w-10 h-10 ' />
 
         <Link to="/home"
-        className=' hover:text-gray-300 text-xl font-playwright-nz-basic font-bold '
-        >Sprites</Link>
+        className=' hover:text-gray-300 text-xl font-nunito'
+        >Pokénfo</Link>
 
       <div className='h-auto w-auto flex gap-2 ml-auto'>
 

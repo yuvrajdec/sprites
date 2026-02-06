@@ -38,7 +38,7 @@ const GithubPage = () => {
     style={{backgroundImage: `url(${BlueBackground})`}}>
     
     {/* Div for Subtle Black Overlay */}
-        <div className='h-screen w-full bg-black/75 flex flex-col items-center'>
+        <div className='h-screen w-full bg-black/90 flex flex-col items-center'>
     {/* Profile Image */}
         <div className='relative h-fit w-full rounded text-2xl text-white'>
         <img className='opacity-40' src={data.avatar_url} alt="profile" />
@@ -56,41 +56,46 @@ const GithubPage = () => {
         {/* Github Logo */}
 
         <div className='group h-20 w-20 rounded-full bg-red-500 ml-auto mr-auto -mt-10 z-10 flex justify-center items-center shadow-black hover:bg-white'>
-            <FaGithub className='text-6xl text-white transition-colors duration-500 group-hover:text-black' />
+            <a href="https://github.com/yuvrajdec"
+            target="_blank" 
+            rel="noopener noreferrer">
+                <FaGithub className='text-6xl text-white transition-colors duration-500 group-hover:text-black' />
+            </a>
+            
         </div>
 
         {/* Github Card Info like followers etc  */}
 
-        <div className='grid grid-cols-3 justify-center items-center  gap-4 text-xl backdrop-blur-xs bg-white rounded h-fit m-5 p-5 w-full max-w-md'>
+        <div className='grid grid-cols-3 justify-center items-center  gap-5 text-xl backdrop-blur-xs rounded h-fit m-5 p-5 w-full max-w-md text-white'>
         
         <div className='flex flex-col items-center text-center gap-1'>
-        <span className='text-sm text-gray-500 uppercase tracking-wide'> Followers</span>
+        <span className='text-sm text-white uppercase tracking-wide'> Followers</span>
         <span>{data.followers}</span>
     
         </div>
 
         <div className='flex flex-col items-center text-center gap-1'>
-            <span className='text-sm text-gray-500 uppercase tracking-wide'>Company</span>
+            <span className='text-sm text-white uppercase tracking-wide'>Company</span>
             <span className='text-lg text-center'>{data.company || "-"}</span>
         </div>
 
         <div className='flex flex-col items-center text-center gap-1' >
-            <span className='text-sm text-gray-500 uppercase tracking-wide' >Repositories</span>
+            <span className='text-sm text-white uppercase tracking-wide' >Repositories</span>
             <span>{data.public_repos}</span>
         </div>
         
         <div className='flex flex-col items-center text-center gap-1' >
-            <span className='text-sm text-gray-500 uppercase tracking-wide' >Following</span>
+            <span className='text-sm text-white uppercase tracking-wide' >Following</span>
             <span>{data.following}</span>
         </div>
 
         <div className='flex flex-col items-center text-center gap-1' >
-            <span className='text-sm text-gray-500 uppercase tracking-wide min-h-5' >Last Updated</span>
+            <span className='text-sm text-white uppercase tracking-wide min-h-5' >Last Updated</span>
             <span className='text-xl'>{lastUpdated}</span>
         </div>
 
         <div className='flex flex-col items-center text-center gap-1' >
-            <span className='text-sm text-gray-500 uppercase tracking-wide min-h-5' >Created</span>
+            <span className='text-sm text-white uppercase tracking-wide min-h-5' >Created</span>
             <span className='text-xl'>1 year ago</span>
         </div>
         
