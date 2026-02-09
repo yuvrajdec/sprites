@@ -6,9 +6,9 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import Layout from './Layout.jsx'
 import Home from './Components/Home/Home.jsx'
 import About from './Components/About/About.jsx'
-import SpritePage from './Components/SpritePage/SpritePage.jsx'
 import GithubPage from './Components/GithubPage/GithubPage.jsx'
 import User from './Components/User/User.jsx'
+import InfoPage from './Components/InfoPage/InfoPage.jsx'
 
 // const router = createBrowserRouter([
 //   {
@@ -33,7 +33,7 @@ const router = createBrowserRouter(
       <Route path='' element={<Home/>}/>
       <Route path='about' element={<About/>}/>
       <Route path='github' element={<GithubPage/>}/>
-      <Route path='spritepage' element={<SpritePage/>}/>
+      <Route path='infopage' element={<InfoPage/>}/>
       <Route path='user/:userid' element={<User/>} />
     </Route>
   )
