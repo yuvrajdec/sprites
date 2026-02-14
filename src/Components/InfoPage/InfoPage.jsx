@@ -117,12 +117,12 @@ const InfoPage = () => {
   )?.genus;
 
   return (
-    <div className="h-screen w-full bg-linear-to-b from-black to-gray-800 bg-contain bg-no-repeat "
+    <div className="h-fit w-full bg-linear-to-b from-black to-gray-800 bg-contain bg-no-repeat "
     style={{backgroundImage: `url(${BlackBg})`}}
     >
       <div className='h-1/3 bg-transparent flex justify-center items-center'>
         {/* <img className='h-full w-auto' src={data.sprites.other['official-artwork'].front_default} alt="sprite" /> */}
-        <img className='h-29/30 w-auto mt-25' src={data.sprites.other.showdown.front_default} alt="sprite" />
+        <img className='h-50 w-auto mt-25' src={data.sprites.other.showdown.front_default} alt="sprite" />
       </div>
 
       {/* Pokemon Details */}
@@ -153,7 +153,7 @@ const InfoPage = () => {
 
       </div>
             {/* Height Weight Species */}
-      <div className='h-15 w-auto bg-amber-500 grid grid-cols-3 gap-1 justify-around items-center pt-2 pb-2'>
+      <div className='h-fit w-auto bg-amber-500 grid grid-cols-3 gap-1 justify-around items-center pt-2 pb-2'>
         {/* Height */}
             <div className='h-auto w-auto grid place-items-center text-2xl border-r'>
               <span>
@@ -180,7 +180,9 @@ const InfoPage = () => {
       </div>
 
       {/* Evolutions */}
-
+            <div className='bg-purple-400 text-center p-2'>
+              <span className='text-3xl font-fredoka'>Evolution</span>
+            </div>
       <div className='h-fit w-auto bg-gray-500 flex justify-around'>
         {evolution.map((poke) => (
           <div
