@@ -117,32 +117,39 @@ const InfoPage = () => {
   )?.genus;
 
   return (
-    <div className="h-fit w-full bg-linear-to-b from-black to-gray-800 bg-contain bg-no-repeat "
+    <div className="h-fit w-full bg-linear-to-b from-black to-gray-800 bg-cover bg-no-repeat "
     style={{backgroundImage: `url(${BlackBg})`}}
     >
+      <div className='flex justify-between font-poppins capitalize font-bold text-3xl text-white p-5'>
+        <span>{data.name}</span>
+        <span className='text-2xl'>#{data.id}</span>
+      </div>
       <div className='h-1/3 bg-transparent flex justify-center items-center'>
         {/* <img className='h-full w-auto' src={data.sprites.other['official-artwork'].front_default} alt="sprite" /> */}
-        <img className='h-50 w-auto mt-25' src={data.sprites.other.showdown.front_default} alt="sprite" />
+        <img className='h-50 w-auto mt-10' src={data.sprites.other.showdown.front_default} alt="sprite" />
       </div>
 
       {/* Pokemon Details */}
-      <div className='h-screen w-full bg-gray-400'>
+      <div className=' h-fit w-full bg-transparent'>
 
-        <div className='pt-15 grid bg-amber-300 place-items-center gap-2'>
-        <div className='h-fit w-fit p-1 bg-white box-border border-2 flex justify-center items-center'>
+        <div className='p-2 grid
+         bg-transparent place-items-center gap-2'>
+
+        {/* not needed anymore already displaying name on top */}
+        {/* <div className='h-fit w-fit p-1 bg-white box-border border-2 flex justify-center items-center'>
           <span className=' text-black text-3xl font-mono'>{capitalize(data.name)}</span>
-        </div> 
+        </div>  */}
 
         <div className='h-fit w-fit p-1 box-border flex justify-center items-center gap-2'>
             {data.types.map((t) => (
               <div key={t.type.name}
               className='h-fit w-fit bg-white box-border border-2 flex justify-center items-center'>
                 <img 
-                className='h-10 w-auto rounded-full p-1'
+                className='max-h-8 min-h-5 w-auto rounded-full p-1'
                 src={typeIcons[t.type.name]} alt="type" />
                 <span
               key={t.type.name}
-              className='capitalize text-black text-md font-fredoka p-2'
+              className='capitalize text-black text-md font-poppins p-1 font-semibold'
               >
                 {capitalize(t.type.name)}
               </span>
@@ -153,26 +160,26 @@ const InfoPage = () => {
 
       </div>
             {/* Height Weight Species */}
-      <div className='h-fit w-auto bg-amber-500 grid grid-cols-3 gap-1 justify-around items-center pt-2 pb-2'>
+      <div className='h-fit w-auto bg-transparent grid grid-cols-3 justify-around items-center pt-2 pb-2 font-poppins text-xl'>
         {/* Height */}
-            <div className='h-auto w-auto grid place-items-center text-2xl border-r'>
-              <span>
+            <div className='h-auto w-auto grid place-items-center border-r-2 border-gray-500'>
+              <span className='font-semibold'>
                 {heightFt}
               </span>
-              <span className='text-xs'>Height</span>
+              <span className='text-xs'>Height (ft)</span>
             </div>
 
             {/* weight */}
 
-            <div className='h-auto w-auto grid place-items-center text-2xl border-r'>
-              <span>
+            <div className='h-auto w-auto grid place-items-center text-2xl border-r-2 border-gray-500'>
+              <span className='font-semibold'>
                 {weightKg}
               </span>
-              <span className='text-xs'>Weight</span>
+              <span className='text-xs'>Weight (kg)</span>
             </div>
             {/* species */}
-            <div className='h-auto w-auto grid place-items-center text-2xl'>
-              <span>
+            <div className='h-auto w-auto flex flex-col justify-center items-center text-2xl text-center'>
+              <span className='text-lg font-semibold'>
                 {genus?.replace("Pokémon", "")}
               </span>
               <span className='text-xs'>Species</span>
@@ -180,18 +187,23 @@ const InfoPage = () => {
       </div>
 
       {/* Evolutions */}
-            <div className='bg-purple-400 text-center p-2'>
-              <span className='text-3xl font-fredoka'>Evolution</span>
+            <div className='bg-transparent text-center pt-5'>
+              <span className='text-3xl font-poppins font-semibold'>Evolution</span>
             </div>
-      <div className='h-fit w-auto bg-gray-500 flex justify-around'>
+
+      <div className='h-fit w-auto bg-transparent flex justify-around font-poppins'>
         {evolution.map((poke) => (
           <div
           key={poke.name}
-          className='h-25 w-25 flex flex-col justify-end items-center bg-white border capitalize'  
+          className='h-30 w-30 flex flex-col justify-end items-center bg-transparent capitalize gap-2'  
           >
             <img className='min-h-10 max-h-full max-w-full object-contain' src={poke.image} alt="sprite" />
-            <span>{poke.name}</span>
+
+            <div className='flex flex-col justify-center items-center gap-0'>
+              <span className='leading-none'>{poke.name}</span>
             <span className='text-xs text-gray-500'>#{poke.id}</span>
+            </div>
+            
           </div>
         ))}
         

@@ -4,6 +4,7 @@ import Pokeball from '../../assets/Icons/Pokeball.png'
 import {Link , NavLink} from 'react-router-dom'
 
 
+
 const Header = () => {
   return (
     <header className='shadow sticky z-50 top-0'>
@@ -11,21 +12,21 @@ const Header = () => {
         <img src={Pokeball} alt="falling" className='w-10 h-10 ' />
 
         <Link to="/home"
-        className=' hover:text-gray-300 text-xl font-nunito'
-        >Pokénfo</Link>
+        className=' hover:text-gray-300 text-2xl font-poppins font-extralight'
+        >Poké<span className='text-red-500'>Dex</span></Link>
 
-      <div className='h-auto w-auto flex gap-2 ml-auto'>
+      <div className='h-auto w-auto flex gap-2 ml-auto text-lg font-poppins font-extralight'>
 
         <NavLink to="/about"
-        className={({isActive})=> `${isActive ? "text-amber-300 underline" : "text-gray-200"}`}
+        className={({isActive})=> `${isActive ? "text-red-500" : "text-gray-200"}`}
         >
-          about
+          About
         </NavLink>
 
         <NavLink to="/github"
-        className={({isActive})=> `${isActive ? "text-amber-400" : "text-gray-200"}`}
+        className={({isActive})=> `${isActive ? "text-red-500" : "text-gray-200"}`}
         >
-          github
+          Github
         </NavLink>
       </div>
         
