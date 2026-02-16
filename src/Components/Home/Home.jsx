@@ -38,7 +38,7 @@ const Home = () => {
         <input type="text"
         placeholder='pika . .'
         autoFocus
-         className='h-20 w-60  bg-gray-900 rounded-l-full text-4xl text-white text-center border-amber-50 border border-r-0 focus:outline-none'
+         className='h-20 w-60  bg-gray-900 rounded-l-full text-2xl text-white text-center border-amber-50 border border-r-0 focus:outline-none'
         value={search}
         onChange={(e)=> setSearch(e.target.value)} />
 
@@ -57,7 +57,7 @@ const Home = () => {
 
       
       </div>
-      <div className='h-fit w-full flex flex-col justify-center items-center  text-5xl text-center font-poppins font-extralight soft-fade-up gap-3'>Instant{" "}
+      <div className='h-fit w-full flex flex-col justify-center items-center  text-5xl text-center font-poppins font-extralight soft-fade-up gap-1'>Instant{" "}
           <span style={{color}} className='font-poppins font-extrabold'>Pokémon</span>
           <span>Information</span>
           <span>At</span>
@@ -66,7 +66,7 @@ const Home = () => {
           <span>
             in a few
           </span>
-          <span className='font-extrabold text-green-500'>SECONDS!</span>
+          <span className='font-extrabold text-green-500 italic'>SECONDS!</span>
           
         </div>
     </div>
