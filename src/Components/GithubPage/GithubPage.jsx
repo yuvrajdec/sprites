@@ -34,11 +34,11 @@ const GithubPage = () => {
     
   return (
     // Background Image Div
-    <div className="h-screen w-full bg-linear-to-r from-black to-gray-800 bg-cover bg-center"
+    <div className="min-h-[calc(100vh-4.5rem)] w-full bg-linear-to-r from-black to-gray-800 bg-cover bg-center"
     style={{backgroundImage: `url(${BlueBackground})`}}>
     
     {/* Div for Subtle Black Overlay */}
-        <div className='h-screen w-full bg-black/90 flex flex-col items-center'>
+        <div className='min-h-[calc(100vh-4.5rem)] w-full bg-black/90 flex flex-col items-center'>
     {/* Profile Image */}
         <div className='relative h-fit w-full rounded text-2xl text-white'>
         <img className='opacity-40' src={data.avatar_url} alt="profile" />

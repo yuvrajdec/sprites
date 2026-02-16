@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { CiSearch } from "react-icons/ci";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { SearchContext } from '../../Context/SearchContext';
+import VideoBg from '../../assets/Backgrounds/BgVideo.mp4'
 
 const Home = () => {
 
@@ -24,6 +25,9 @@ const Home = () => {
       "#F59E0B", // yellow
       "#A855F7", // purple
       "#EC4899", // pink
+      "#00FFFF", //cyan
+      "#FFFFFF", //white
+
     ];
 
     const randomColors = colors[Math.floor(Math.random() * colors.length)];
@@ -33,12 +37,29 @@ const Home = () => {
   
 
   return (
-    <div className='h-screen w-full bg-linear-to-b from-black to-gray-700 text-white flex flex-col font-poppins'>
-      <div className='h-50 w-auto py-18 px-8 flex'>
+  <div className='relative min-h-[calc(100vh-4.5rem)] w-full '>
+
+    <div className=' w-full text-white grid place-items-center font-poppins
+     overflow-hidden'  
+    >
+        <video 
+        autoPlay
+        loop
+        muted
+        playsInline
+        className='absolute inset-0 w-full h-full object-cover -z-10'
+        >
+          <source src={VideoBg} type='video/mp4' />
+        </video>
+
+        <div className='absolute inset-0 bg-black/75'></div>
+      
+
+      <div className='h-50 w-auto pt-10 flex'>
         <input type="text"
-        placeholder='pika . .'
+        placeholder='pikachu'
         autoFocus
-         className='h-20 w-60  bg-gray-900 rounded-l-full text-2xl text-white text-center border-amber-50 border border-r-0 focus:outline-none'
+         className='h-20 w-60  bg-gray-900 rounded-l-full text-2xl text-white text-center border-amber-50 border border-r-0 focus:outline-none z-10'
         value={search}
         onChange={(e)=> setSearch(e.target.value)} />
 
@@ -70,6 +91,7 @@ const Home = () => {
           
         </div>
     </div>
+  </div>
   )
 }
 
