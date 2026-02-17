@@ -3,6 +3,11 @@ import { CiSearch } from "react-icons/ci";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { SearchContext } from '../../Context/SearchContext';
 import VideoBg from '../../assets/Backgrounds/BgVideo.mp4'
+import PikachuIMG from '../../assets/OtherImages/25.svg'
+import { PiArrowBendDownLeftLight } from "react-icons/pi";
+import PokemonTextLogo from '../../assets/OtherImages/PokemonTextLogo.png'
+
+
 
 const Home = () => {
 
@@ -37,7 +42,10 @@ const Home = () => {
   
 
   return (
+    // background 
   <div className='relative min-h-[calc(100vh-4.5rem)] w-full '>
+
+  {/* video bavkground */}
 
     <div className=' w-full text-white grid place-items-center font-poppins
      overflow-hidden'  
@@ -52,10 +60,31 @@ const Home = () => {
           <source src={VideoBg} type='video/mp4' />
         </video>
 
-        <div className='absolute inset-0 bg-black/75'></div>
+        <div className='absolute inset-0 bg-black/75 -z-9'></div>
       
+      {/* User Guide */}
 
-      <div className='h-50 w-auto pt-10 flex'>
+      <div className='bg-transparent h-auto w-full z text-center p-5'>
+        <span className='text-2xl font- font-light font-poppins'>
+          Search by <span className='font-bold'>NAME</span> Or <span className='font-bold'>ID</span>
+        </span>
+      </div>
+
+      {/* Pikachu Example for User */}
+
+        <div className='grid grid-cols-3 bg-transparent text-center italic'>
+        <span className='flex flex-col justify-center items-center text-xl'>Name : "Pikachu" <PiArrowBendDownLeftLight className='scale-x-[-1] text-4xl' /></span>
+        
+        <img 
+        className='h-40'
+        src={PikachuIMG} alt="Pikachu" />
+        
+        <span className='flex flex-col justify-center items-center text-2xl'>ID : "25" <PiArrowBendDownLeftLight /></span>
+        </div>
+        
+      {/* Search Bar */}
+
+      <div className='h-50 w-auto flex place-items-center'>
         <input type="text"
         placeholder='pikachu'
         autoFocus
@@ -66,7 +95,7 @@ const Home = () => {
       
         <div className='h-20 w-20 flex justify-center items-center backdrop-blur-md rounded-r-full text-4xl text-white bg-gray-900  border-white border border-l-0'>
 
-          {/* <NavLink to='/infopage'> trued to use is to navigate to result page but now isntead it could be done using the handlesearch function for the same thing */} 
+          {/* <NavLink to='/infopage'> tried to use it to navigate to result page but now isntead it could be done using the handlesearch function for the same thing */} 
           <button className='bg-transparent h-16 w-16 rounded-full flex justify-center items-center'
           onClick={handleSearch}
           >
@@ -78,18 +107,19 @@ const Home = () => {
 
       
       </div>
-      <div className='h-fit w-full flex flex-col justify-center items-center  text-5xl text-center font-poppins font-extralight soft-fade-up gap-1'>Instant{" "}
-          <span style={{color}} className='font-poppins font-extrabold'>Pokémon</span>
-          <span>Information</span>
-          <span>At</span>
-          <span className='font-bold'>YOUR</span>
-          <span>Fingertips</span>
-          <span>
-            in a few
-          </span>
-          <span className='font-extrabold text-green-500 italic'>SECONDS!</span>
-          
-        </div>
+
+      {/* After Search Bar */}
+
+      <div className='bg-transparent w-full font-poppins flex flex-col text-center -mt-5'>
+        <span className='font-bold font-nunito text-7xl'>WHO IS</span>
+        <span className='font-bold font-nunito text-8xl'>YOUR</span>
+        <span className='font-bold font-nunito text-5xl'>FAVOURITE</span>
+      </div>
+
+      <img 
+        className='h-auto w-70 -mt-5'
+        src={PokemonTextLogo} alt="Logo" />
+    
     </div>
   </div>
   )
