@@ -5,13 +5,12 @@ import PikachuIMG from '../../assets/OtherImages/25.png'
 
 const About = () => {
   return (
-    <div className="h-screen w-full bg-cover bg-center bg-no-repeat overflow-hidden"
-    style={{backgroundImage: `url(${PikachuBg})`,
-            height: "calc(100vh - 72px)"}}
+    <div className="min-h-[calc(100vh-4.5rem)] w-full bg-cover bg-center bg-no-repeat"
+    style={{backgroundImage: `url(${PikachuBg})`}}
     >
-      <div className='h-full w-full backdrop-blur-lg bg-black/50'>
+      <div className='min-h-[calc(100vh-4.5rem)] w-full backdrop-blur-lg bg-black/50'>
 
-      <div className='h-auto w-full text-center text-3xl text-white font-nunito p-10 font-semibold flex flex-col gap-10'>
+      <div className='h-fit w-full text-center text-3xl text-white font-nunito p-10 font-semibold flex flex-col gap-10'>
         <span className='h-auto'>
           Welcome To PokéDex
         </span>
