@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { SearchContext } from '../../Context/SearchContext';
 import BlackBg from '../../assets/Backgrounds/BlackBg.png'
 import { typeIcons } from '../../assets/images';
+import {Link , NavLink} from 'react-router-dom'
 
 
 const InfoPage = () => {
@@ -38,25 +39,52 @@ const InfoPage = () => {
     if (search) fetchData();
   },[search]);
 
+// don't need it now because we already fetched this so dont need to fetch same thing twice (need to understand this)
+//   useEffect(()=>{
+//     const fetchResult = async () => {
+//       try {
+//         const response2 = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${search}
+// `);
+//         const result2 = await response2.json();
+//         setSpeciesGenus(result2);
 
-  useEffect(()=>{
-    const fetchResult = async () => {
-      try {
-        const response2 = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${search}
-`);
-        const result2 = await response2.json();
-        setSpeciesGenus(result2);
-
-      } catch (err) {
-        console.error(err);
-      } finally {
-        console.log("false");
+//       } catch (err) {
+//         console.error(err);
+//       } finally {
+//         console.log("false");
         
-      }
-    };
+//       }
+//     };
 
-    if (search) fetchResult();
-  },[search]);
+//     if (search) fetchResult();
+//   },[search]);
+
+  const getEvolutionChain = async (chain) => {
+  const evoArray = [];
+
+  const traverse = async (node) => {
+    const pokeRes = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${node.species.name}`
+    );
+    const pokeData = await pokeRes.json();
+
+    evoArray.push({
+      name: node.species.name,
+      id: pokeData.id,
+      image:
+        pokeData.sprites.other?.showdown?.front_default ||
+        pokeData.sprites.other?.['official-artwork']?.front_default ||
+        pokeData.sprites.front_default ,
+    });
+
+    for (const evo of node.evolves_to) {
+      await traverse(evo);
+    }
+  };
+
+  await traverse(chain);
+  return evoArray;
+};
 
   useEffect(() => {
     const fetchEvolution = async () => {
@@ -69,23 +97,36 @@ const InfoPage = () => {
         const evoRes = await fetch (speciesData.evolution_chain.url);
         const evoData = await evoRes.json();
 
-        const evoChain = [];
-        let current = evoData.chain;
+        // old evolution logic
+        // const evoChain = [];
+        // let current = evoData.chain;
 
-        while (current) {
 
-          const pokeRes = await fetch(`https://pokeapi.co/api/v2/pokemon/${current.species.name}`);
 
-          const pokedata = await pokeRes.json();
 
-          evoChain.push({
-            name : current.species.name,
-            image : pokedata.sprites.other?.showdown?.front_default,
-            id: pokedata.id
-          }
-          );
-          current = current.evolves_to[0];
-        }
+        // new evolution logic
+        const evoChain = await getEvolutionChain(evoData.chain);
+
+        // old logic which 70% I didnt understand 
+        // while (current) {
+
+        //   const pokeRes = await fetch(`https://pokeapi.co/api/v2/pokemon/${current.species.name}`);
+
+        //   const pokedata = await pokeRes.json();
+
+        //   evoChain.push({
+        //     name : current.species.name,
+        //     image : pokedata.sprites.other?.showdown?.front_default,
+        //     id: pokedata.id
+        //   }
+        //   );
+        //   current = current.evolves_to[0];
+        // }
+
+
+        // new evolution fixed logic did not understand most of it will check it later  
+        
+
 
         setEvolution(evoChain);
 
@@ -100,11 +141,17 @@ const InfoPage = () => {
   },[search])
 
 
+  if (loading) return <div className='min-h-[calc(100vh-4.5rem)] bg-gray-900 flex justify-center items-center'>
+    <span class="loader"></span>
+    </div>;
 
-
-
-  if (loading) return <p>Loading...</p>;
-  if (!data) return <p>No Results Found</p>
+  if (!data) return <div className='min-h-[calc(100vh-4.5rem)] bg-gray-900 flex flex-col justify-center items-center text-center text-white gap-5'>
+    <span className='font-poppins text-2xl font-extrabold text-white' >No Results Found</span>
+    <Link to="/">
+    <button className='h-15 w-50 bg-white font-bold font-nunito text-black text-3xl cursor-pointer' >Back</button>
+    </Link>
+    
+    </div>;
 
   const heightFt = (((data.height/10)*3.28084).toFixed(2));
 
@@ -117,20 +164,23 @@ const InfoPage = () => {
   )?.genus;
 
   return (
-    <div className="h-fit w-full bg-linear-to-b from-black to-gray-800 bg-cover bg-no-repeat "
+    // background image
+    <div className="h-fit w-full  bg-cover bg-no-repeat"
     style={{backgroundImage: `url(${BlackBg})`}}
     >
-      <div className='flex justify-between font-poppins capitalize font-bold text-3xl text-white p-5'>
+      {/* name and id */}
+      <div className=' flex justify-between font-poppins capitalize font-bold text-2xl text-white p-5'>
         <span>{data.name}</span>
-        <span className='text-2xl'>#{data.id}</span>
+        <span className='text-xl'>#{data.id}</span>
       </div>
-      <div className='h-1/3 bg-transparent flex justify-center items-center'>
+
+      <div className='h-50 flex justify-center items-end '>
         {/* <img className='h-full w-auto' src={data.sprites.other['official-artwork'].front_default} alt="sprite" /> */}
-        <img className='h-50 w-auto mt-10' src={data.sprites.other.showdown.front_default} alt="sprite" />
+        <img className='max-h-35 min-h-25 w-auto' src={data?.sprites?.other?.dream_world?.front_default || data?.sprites?.other?.['official-artwork']?.front_default || data?.sprites?.front_default } alt="sprite" />
       </div>
 
       {/* Pokemon Details */}
-      <div className=' h-fit w-full bg-transparent'>
+      <div className=' h-fit w-full'>
 
         <div className='p-2 grid
          bg-transparent place-items-center gap-2'>
@@ -178,8 +228,8 @@ const InfoPage = () => {
               <span className='text-xs'>Weight (kg)</span>
             </div>
             {/* species */}
-            <div className='h-auto w-auto flex flex-col justify-center items-center text-2xl text-center'>
-              <span className='text-lg font-semibold'>
+            <div className='h-auto w-auto flex flex-col justify-center items-center text-center'>
+              <span className='font-semibold sm:text-sm md:text-md lg:text-lg'>
                 {genus?.replace("Pokémon", "")}
               </span>
               <span className='text-xs'>Species</span>
@@ -187,19 +237,19 @@ const InfoPage = () => {
       </div>
 
       {/* Evolutions */}
-            <div className='bg-transparent text-center pt-5'>
+            <div className='h-15 bg-transparent text-center flex justify-center items-center'>
               <span className='text-3xl font-poppins font-semibold'>Evolution</span>
             </div>
 
-      <div className='h-fit w-auto bg-transparent flex justify-around font-poppins'>
+      <div className='h-fit w-auto bg-transparent flex justify-center flex-wrap font-poppins'>
         {evolution.map((poke) => (
           <div
           key={poke.name}
           className='h-30 w-30 flex flex-col justify-end items-center bg-transparent capitalize gap-2'  
           >
-            <img className='min-h-10 max-h-full max-w-full object-contain' src={poke.image} alt="sprite" />
+            <img className='min-h-10 max-h-20 max-w-25 object-contain' src={poke.image} alt="sprite" />
 
-            <div className='flex flex-col justify-center items-center gap-0'>
+            <div className='flex flex-col justify-center items-center gap-0.5'>
               <span className='leading-none'>{poke.name}</span>
             <span className='text-xs text-gray-500'>#{poke.id}</span>
             </div>

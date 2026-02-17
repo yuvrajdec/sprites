@@ -47,8 +47,7 @@ const Home = () => {
 
   {/* video bavkground */}
 
-    <div className=' w-full text-white grid place-items-center font-poppins
-     overflow-hidden'  
+    <div className=' w-full text-white flex  flex-col items-center font-poppins overflow-hidden'  
     >
         <video 
         autoPlay
@@ -73,18 +72,18 @@ const Home = () => {
       {/* Pikachu Example for User */}
 
         <div className='grid grid-cols-3 bg-transparent text-center italic'>
-        <span className='flex flex-col justify-center items-center text-xl'>Name : "Pikachu" <PiArrowBendDownLeftLight className='scale-x-[-1] text-4xl' /></span>
+        <span className='flex flex-col justify-center items-center text-xl'>Name : "Pikachu" <PiArrowBendDownLeftLight className='scale-x-[-1] text-3xl' /></span>
         
         <img 
         className='h-40'
         src={PikachuIMG} alt="Pikachu" />
         
-        <span className='flex flex-col justify-center items-center text-2xl'>ID : "25" <PiArrowBendDownLeftLight /></span>
+        <span className='flex flex-col justify-center items-center text-2xl'>ID : "25" <PiArrowBendDownLeftLight className='text-3xl' /></span>
         </div>
         
       {/* Search Bar */}
 
-      <div className='h-50 w-auto flex place-items-center'>
+      <div className='h-34 w-auto flex place-items-center'>
         <input type="text"
         placeholder='pikachu'
         autoFocus
@@ -110,9 +109,9 @@ const Home = () => {
 
       {/* After Search Bar */}
 
-      <div className='bg-transparent w-full font-poppins flex flex-col text-center -mt-5'>
+      <div className='bg-transparent w-full font-poppins flex flex-col text-center'>
         <span className='font-bold font-nunito text-7xl'>WHO IS</span>
-        <span className='font-bold font-nunito text-8xl'>YOUR</span>
+        <span className='font-bold font-nunito text-8xl italic'>YOUR</span>
         <span className='font-bold font-nunito text-5xl'>FAVOURITE</span>
       </div>
 

@@ -1,5 +1,7 @@
 import React from 'react'
 import PikachuBg from '../../assets/Backgrounds/PikachuBg.jpg'
+import { PiArrowBendDownLeftLight } from "react-icons/pi";
+import PikachuIMG from '../../assets/OtherImages/25.png'
 
 const About = () => {
   return (
@@ -23,6 +25,34 @@ const About = () => {
         </div>
         
       </div>
+
+      <div className='grid grid-cols-2 bg-transparent text-center italic text-white'>
+              <span className='flex flex-col justify-center items-end text-xl'>Name : "Pikachu"
+              
+              <span className='flex flex-col items-end text-2xl '>ID : "25" </span>
+              <PiArrowBendDownLeftLight className='text-3xl scale-x-[-1]' />
+              </span>
+              
+              <img 
+              className='h-full flex justify-center items-center'
+              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/brilliant-diamond-shining-pearl/25.png" alt="Pikachu" />
+              
+              
+              </div>
+
+
+              <div className='grid grid-cols-2 bg-transparent text-center italic text-white'>
+              <span className='flex flex-col justify-center items-end text-xl'>Name : "Mewtwo"
+              
+              <span className='flex flex-col items-end text-2xl '>ID : "150" <PiArrowBendDownLeftLight className='text-3xl scale-x-[-1]' /></span>
+              </span>
+              
+              <img 
+              className='h-full flex'
+              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/brilliant-diamond-shining-pearl/150.png" alt="Mewtwo" />
+              
+              
+              </div>
 
       </div>
 
